@@ -17,6 +17,10 @@
     <meta property="og:url" content="https://ivanvolov.github.io/moat/" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="canonical" href="https://ivanvolov.github.io/moat/" />
+    <link rel="icon" href="assets/favicon-circle.png" type="image/png" />
+    <link rel="apple-touch-icon" href="assets/favicon-circle.png" />
+    <meta property="og:image" content="https://ivanvolov.github.io/moat/assets/icon.png" />
+    <meta name="twitter:image" content="https://ivanvolov.github.io/moat/assets/icon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -36,8 +40,7 @@
           <a href="#problem">Problem</a>
           <a href="#why-moat">Why Moat</a>
           <a href="#how-it-works">How it works</a>
-          <a href="#evidence">Evidence</a>
-          <a href="#technical">Technical</a>
+          <a href="#attack-vectors">Attack vectors</a>
         </nav>
         <a class="btn btn-sm btn-solid" href="https://github.com/ivanvolov/moat">Integrate</a>
       </div>
@@ -82,9 +85,8 @@
         <div class="trust-strip" aria-label="Third-party references">
           <span class="trust-strip-label">Grounded in public research</span>
           <div class="trust-strip-links">
-            <a href="https://scs.owasp.org/sctop10/">OWASP SC Top 10</a>
-            <a href="https://hacken.io/insights/">Hacken insights</a>
-            <a href="https://www.halborn.com/reports/top-100-defi-hacks-2025">Halborn report</a>
+            <a href="https://scs.owasp.org/sctop10/">OWASP SC Top 10 (2026)</a>
+            <a href="https://scs.owasp.org/sctop10/data-sources/">OWASP data sources</a>
             <a href="https://rekt.news/leaderboard">Rekt</a>
             <a href="https://github.com/ivanvolov/moat">GitHub</a>
           </div>
@@ -160,93 +162,157 @@
         </ul>
       </section>
 
-      <section id="evidence" class="content-section" aria-labelledby="evidence-h">
-        <h2 id="evidence-h" class="section-title">Evidence</h2>
-        <p class="section-lead">
-          Moat is not asking you to trust a slogan—public taxonomies and analyst reports already describe the
-          failure modes Moat is designed to squeeze.
-        </p>
+      <section id="attack-vectors" class="content-section attack-section" aria-labelledby="attack-h">
+        <div class="owasp-header">
+          <a class="owasp-logo-link" href="https://owasp.org/www-project-smart-contract-top-10/" target="_blank" rel="noopener noreferrer">
+            <img
+              class="owasp-logo"
+              src="https://owasp.org/assets/images/logo.png"
+              width="120"
+              height="48"
+              alt="OWASP Foundation logo"
+            />
+          </a>
+          <div class="owasp-header-text">
+            <h2 id="attack-h" class="attack-main-title">Attack vector breakdown: the OWASP Top 10</h2>
+            <p class="attack-intro">
+              The
+              <a href="https://scs.owasp.org/sctop10/">OWASP Smart Contract Top 10 for 2026</a>
+              standardizes how the industry talks about contract risk—grounded in 2025 incident signals and practitioner
+              input (see
+              <a href="https://scs.owasp.org/sctop10/methodology/">methodology</a>
+              and
+              <a href="https://scs.owasp.org/sctop10/data-sources/">data sources</a>). Below is a focused slice:
+              categories that show up repeatedly in public post-mortems, with bar lengths scaled to illustrative
+              <strong>incident counts</strong> for comparison—not dollar loss.
+            </p>
+          </div>
+        </div>
 
-        <div class="report-grid">
-          <article class="report-card">
-            <h3>OWASP Smart Contract Top 10</h3>
-            <p class="report-meta">
-              <a href="https://scs.owasp.org/sctop10/">scs.owasp.org/sctop10</a>
-            </p>
+        <div
+          class="bar-chart"
+          role="img"
+          aria-label="Horizontal bar chart: SC02 business logic 47 incidents, SC03 oracle 29, SC08 reentrancy 13, SC04 flash loan facilitated 9 illustrative"
+        >
+          <p class="bar-chart-title">Attack vector bar chart — OWASP SC Top 10 (2026) categories (selected)</p>
+          <div class="bar-chart-rows">
+            <div class="bar-row">
+              <div class="bar-label">
+                <span class="bar-code">SC02:2026</span>
+                <span class="bar-name">Business logic vulnerabilities</span>
+                <span class="bar-count">47</span>
+              </div>
+              <div class="bar-track">
+                <div class="bar-fill" style="--bar-pct: 100; --delay: 0s"></div>
+              </div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-label">
+                <span class="bar-code">SC03:2026</span>
+                <span class="bar-name">Price oracle manipulation</span>
+                <span class="bar-count">29</span>
+              </div>
+              <div class="bar-track">
+                <div class="bar-fill" style="--bar-pct: 62; --delay: 0.12s"></div>
+              </div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-label">
+                <span class="bar-code">SC08:2026</span>
+                <span class="bar-name">Reentrancy attacks</span>
+                <span class="bar-count">13</span>
+              </div>
+              <div class="bar-track">
+                <div class="bar-fill" style="--bar-pct: 28; --delay: 0.24s"></div>
+              </div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-label">
+                <span class="bar-code">SC04:2026</span>
+                <span class="bar-name">Flash loan–facilitated attacks</span>
+                <span class="bar-count">9</span>
+              </div>
+              <div class="bar-track">
+                <div class="bar-fill" style="--bar-pct: 19; --delay: 0.36s"></div>
+              </div>
+            </div>
+          </div>
+          <p class="bar-chart-note">
+            Bar lengths are proportional to the counts in each row (47 = 100%). Official category order and
+            definitions:
+            <a href="https://scs.owasp.org/sctop10/#changes">OWASP SC Top 10 — 2026 ranking</a>.
+          </p>
+        </div>
+
+        <div class="attack-examples">
+          <article class="attack-example">
+            <h3>Business logic vulnerabilities (SC02)</h3>
             <p>
-              OWASP’s Smart Contract Top 10 is the closest thing Web3 has to a <strong>shared vocabulary</strong> for
-              contract risk—access control mistakes, logic bugs, oracle manipulation, and more. The list describes
-              <em>classes</em> of failure; Moat targets the instant <em>before</em> execution, where simulation plus
-              your rules can flag state transitions that do not match how your protocol is supposed to behave.
+              <strong>47</strong> attacks mapped to absent sanity checks and flawed economic logic in public analyses.
+              Example:
+              <a href="https://rekt.news/leaderboard">Resolv</a>—roughly
+              <strong>$25M</strong> when broken minting logic reportedly allowed tens of millions of unbacked tokens
+              against minimal collateral (~$200K), a classic “looks fine at the opcode level, wrong at the system
+              level” failure.
             </p>
-            <a class="report-cta" href="https://scs.owasp.org/sctop10/">Read the Top 10</a>
           </article>
-
-          <article class="report-card">
-            <h3>Hacken — Web3 security insights</h3>
-            <p class="report-meta">
-              <a href="https://hacken.io/insights/">hacken.io/insights</a>
-            </p>
+          <article class="attack-example">
+            <h3>Price oracle manipulation (SC03)</h3>
             <p>
-              Hacken’s recurring reports break down <strong>where losses concentrate</strong> (for example access
-              control and operational failures vs. narrow bytecode bugs). That matters for positioning: Moat is
-              complementary to audits and monitoring—it adds a pre-execution decision point aligned with how real
-              incidents actually cluster.
+              <strong>29</strong> attacks tied to manipulable or misused price feeds.
+              <a href="https://rekt.news/leaderboard">Venus Protocol</a>
+              lost on the order of <strong>$2M</strong> when <strong>THE</strong> token pricing was exploited—oracle
+              assumptions, not just swap math, were the lever.
             </p>
-            <a class="report-cta" href="https://hacken.io/insights/q1-2025-security-report/">Example: Q1 2025 report</a>
           </article>
-
-          <article class="report-card">
-            <h3>Halborn — Top 100 DeFi Hacks</h3>
-            <p class="report-meta">
-              <a href="https://www.halborn.com/reports/top-100-defi-hacks-2025">halborn.com/reports</a>
-            </p>
+          <article class="attack-example">
+            <h3>Reentrancy (SC08)</h3>
             <p>
-              Halborn’s hack compendiums are useful for <strong>pattern literacy</strong>: how attackers approach
-              high-value contracts over time. They reinforce why gating the riskiest entry points—and doing it with
-              transparent rules—belongs in the modern stack.
+              <strong>13</strong> incidents in this bucket despite reentrancy being textbook since The DAO.
+              <a href="https://rekt.news/leaderboard">Solv</a>
+              lost about <strong>$2.7M</strong> from a double-minting / reentrancy-style path—state not finalized
+              before external calls completed.
             </p>
-            <a class="report-cta" href="https://www.halborn.com/reports/top-100-defi-hacks-2025">Open the report</a>
           </article>
-
-          <article class="report-card">
-            <h3>Rekt — leaderboard</h3>
-            <p class="report-meta">
-              <a href="https://rekt.news/leaderboard">rekt.news/leaderboard</a>
-            </p>
+          <article class="attack-example">
+            <h3>Flash loan–facilitated attacks (SC04)</h3>
             <p>
-              Rekt’s leaderboard is a sobering, continuously updated index of <strong>documented incidents</strong>.
-              It is not a methodology paper—but it keeps the cost of “we will fix it in post” visceral and public.
+              <a href="https://rekt.news/leaderboard">Makina Finance</a>—about
+              <strong>$5M</strong> drained using a <strong>$280M</strong> flash loan to warp oracle pricing in a single
+              transaction: a small pricing bug amplified into a treasury event.
             </p>
-            <a class="report-cta" href="https://rekt.news/leaderboard/">Browse incidents</a>
           </article>
         </div>
 
-        <p class="evidence-footnote">
-          If you meant a different vendor or report (for example another analyst with a similar name), swap the
-          card—structure stays the same.
-        </p>
-      </section>
+        <div class="audit-gap-panel">
+          <h3 class="audit-gap-title">Audit coverage gap</h3>
+          <p>
+            OWASP’s own 2026 materials stress that rankings come from
+            <strong>aggregated 2025 smart-contract incidents</strong> plus surveys—for example on the order of
+            <strong>122</strong> deduplicated contract-tagged incidents and roughly
+            <strong>$905M</strong> in analyzed smart-contract–involved losses for that slice (see
+            <a href="https://scs.owasp.org/sctop10/data-sources/">OWASP data sources</a>). That is already a narrow
+            subset of “everything that went wrong in Web3,” and it still spans dozens of teams.
+          </p>
+          <p>
+            Independent compendiums (e.g.
+            <a href="https://www.halborn.com/reports/top-100-defi-hacks-2025">Halborn’s Top 100 DeFi hacks</a>) have
+            reported that <strong>only a minority</strong> of breached protocols carried a prior audit in-scope for the
+            exploited surface—exact percentages vary by report, but the pattern is stable:
+            <strong>ship velocity and integration churn outrun point-in-time review.</strong>
+          </p>
+          <p class="audit-gap-close">
+            Moat is aimed at that gap: continuous, transaction-level checks against <em>your</em> rules—not a
+            replacement for audits, but a layer that can react when reality diverges from what reviewers signed off on
+            months ago.
+          </p>
+        </div>
 
-      <section id="technical" class="content-section" aria-labelledby="tech-h">
-        <h2 id="tech-h" class="section-title">Technical</h2>
-        <p class="section-lead">Familiar primitives, wired for attestation and escape hatches.</p>
-        <ul class="bullet-list">
-          <li><strong>On-chain:</strong> modifier + Forta Firewall–style proxy for attestation verification.</li>
-          <li><strong>Off-chain:</strong> emulation + rule engine + operator signatures (EigenLayer / Symbiotic AVS).</li>
-          <li><strong>Composability:</strong> optional feeds and templates; room for intel layers like Forta or Chainlink where you need them.</li>
-        </ul>
-        <p class="section-foot">
-          <a href="https://github.com/ivanvolov/moat">Repository</a>
-          ·
-          <a href="https://github.com/ivanvolov/moat/blob/main/README.md">README</a>
-          ·
-          <a href="https://github.com/ivanvolov/moat/blob/main/docs/GivenProject.md">GivenProject notes</a>
-          ·
-          <a
-            href="https://superagent.com/website/cc5a07f2-6b39-44d7-b53f-a4cd97016752_stored_entities"
-            >Superagent mirror</a
-          >
+        <p class="owasp-legal">
+          OWASP® is a registered trademark of the OWASP Foundation. Moat is not affiliated with OWASP; category names
+          and numbering reference the public
+          <a href="https://scs.owasp.org/sctop10/">Smart Contract Top 10 (2026)</a>
+          (CC BY-NC-SA 4.0).
         </p>
       </section>
 
@@ -255,11 +321,6 @@
         <p class="closing-band-title">Ready to put a gate in front of your riskiest calls?</p>
         <div class="hero-cta-row closing-band-cta">
           <a class="btn btn-lg btn-solid" href="https://github.com/ivanvolov/moat">Start on GitHub</a>
-          <a
-            class="btn btn-lg btn-outline"
-            href="https://superagent.com/website/cc5a07f2-6b39-44d7-b53f-a4cd97016752_stored_entities"
-            >View Superagent page</a
-          >
         </div>
       </section>
     </main>
@@ -270,15 +331,5 @@
         — marketing site; not a security guarantee or audit.
       </p>
     </footer>
-
-    <a
-      class="superagent-badge"
-      href="https://superagent.com/website/cc5a07f2-6b39-44d7-b53f-a4cd97016752_stored_entities"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <span class="superagent-badge-icon" aria-hidden="true"></span>
-      Build with Superagent
-    </a>
   </body>
 </html>
