@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Moat — pre-execution firewall for smart contracts</title>
+    <meta
+      name="description"
+      content="Open-source, decentralized pre-execution firewall: emulate transactions, apply team-defined rules, enforce on-chain with a timelock fallback."
+    />
+    <meta property="og:title" content="Moat — pre-execution firewall for smart contracts" />
+    <meta
+      property="og:description"
+      content="Emulate incoming transactions, check them against protocol rules, and gate execution on-chain—with a user-controlled timelock after delays."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ivanvolov.github.io/moat/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="header-inner">
+        <span class="logo">Moat</span>
+        <nav class="nav-actions" aria-label="Primary">
+          <a class="btn" href="https://github.com/ivanvolov/moat/blob/main/README.md">README</a>
+          <a class="btn btn-primary" href="https://github.com/ivanvolov/moat">Repository</a>
+        </nav>
+      </div>
+    </header>
+    <main id="main">
+      <section id="intro" aria-labelledby="intro-heading">
+        <h1 id="intro-heading">Pre-execution firewall for smart contracts</h1>
+        <p class="lead">
+          Moat is an open-source project aimed at gating critical contract calls: simulate state
+          before execution, evaluate team-defined rules, and enforce the outcome on-chain. It is
+          meant to complement audits and other tooling, not replace them.
+        </p>
+      </section>
+
+      <section id="problem" aria-labelledby="problem-heading">
+        <h2 id="problem-heading">Context</h2>
+        <p>
+          Many incident responses still depend on reacting after suspicious transactions appear—
+          for example racing the mempool or pausing an entire protocol. Those approaches are
+          brittle, and losses in DeFi remain large; see the
+          <a href="https://rekt.news/leaderboard">Rekt leaderboard</a> for a running index of
+          documented cases.
+        </p>
+        <p>
+          Moat focuses on delaying or blocking specific calls when an off-chain check fails,
+          instead of only acting once state has already changed. Smart contract risk categories are
+          summarized in the
+          <a href="https://scs.owasp.org/sctop10/">OWASP Smart Contract Top 10 (2026)</a>.
+        </p>
+        <p>
+          Some commercial guardrails are closed or scheduled to wind down; Moat explores an
+          open, auditable path built from existing primitives.
+        </p>
+      </section>
+
+      <section id="how" aria-labelledby="how-heading">
+        <h2 id="how-heading">How it works</h2>
+        <div class="figure-block">
+          <img
+            src="assets/moat-transaction-flow.png"
+            alt="Moat transaction flow diagram: a user may submit via standard RPC and mempool or directly to a Moat watchtower; decentralized operators on EigenLayer perform off-chain validation by simulating state change from S0 to S1 and comparing against team rules such as value limits and frequency caps, then sign an attestation; on-chain, a Forta Firewall modifier verifies the attestation—if valid the transaction executes, if invalid or there is no response a 30-minute timelock applies after which the user may still execute."
+          />
+          <p class="figure-caption">High-level transaction path: initiation, off-chain validation, on-chain attestation, execute or timelock.</p>
+        </div>
+        <ul>
+          <li>
+            <strong>On-chain:</strong> a modifier on functions you choose (for example withdraw or
+            deposit), using a Forta Firewall–style proxy pattern for attestation checks.
+          </li>
+          <li>
+            <strong>Off-chain:</strong> operators run emulation (state before and after the call),
+            apply your rules (limits, ratios, frequency, and similar), and sign attestations. The
+            design targets an actively validated service on EigenLayer / Symbiotic.
+          </li>
+          <li>
+            <strong>Rules:</strong> defined by the protocol team as plain invariants—what “normal”
+            means for your system.
+          </li>
+          <li>
+            <strong>Fallback:</strong> when a call is held or rejected, a configurable timelock
+            (for example 30 minutes) is intended to give responders time while still allowing the
+            caller to proceed afterward, so execution is not permanently blocked by the firewall
+            alone.
+          </li>
+        </ul>
+      </section>
+
+      <section id="roadmap" aria-labelledby="roadmap-heading">
+        <h2 id="roadmap-heading">Roadmap</h2>
+        <ul class="milestones">
+          <li>
+            <strong>Milestone 1</strong> — On-chain contracts, timelock, off-chain emulation
+            backend, basic rule engine, and security review before a public release.
+          </li>
+          <li>
+            <strong>Milestone 2</strong> — Decentralized operator set (AVS), integrations with
+            security and data providers where useful, and starter rule templates.
+          </li>
+          <li>
+            <strong>Milestone 3</strong> — Preset rule patterns for common DeFi surfaces so teams
+            can start from templates and adapt.
+          </li>
+        </ul>
+      </section>
+
+      <section id="references" aria-labelledby="references-heading">
+        <h2 id="references-heading">Links</h2>
+        <ul class="ref-list">
+          <li><a href="https://github.com/ivanvolov/moat">GitHub repository</a></li>
+          <li><a href="https://github.com/ivanvolov/moat/blob/main/README.md">Project README</a></li>
+          <li>
+            <a href="https://github.com/ivanvolov/moat/blob/main/docs/GivenProject.md">Background notes (GivenProject)</a>
+          </li>
+          <li>
+            <a href="https://superagent.com/website/cc5a07f2-6b39-44d7-b53f-a4cd97016752_stored_entities"
+              >Moat on Superagent</a
+            >
+          </li>
+          <li><a href="https://rekt.news/leaderboard">Rekt — incident leaderboard</a></li>
+          <li><a href="https://scs.owasp.org/sctop10/">OWASP Smart Contract Top 10</a></li>
+        </ul>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <p>
+        <a href="https://github.com/ivanvolov/moat">ivanvolov/moat</a>
+        — open source. Content on this page is descriptive, not a security guarantee.
+      </p>
+    </footer>
+  </body>
+</html>

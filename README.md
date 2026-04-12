@@ -47,3 +47,9 @@ Moat is built by composing existing, audited primitives:
 **Open source, built from audited components.** Moat uses battle-tested building blocks — OpenZeppelin libraries, established AVS patterns, the Forta Firewall proxy. The firewall itself can be audited once and reused by every protocol that integrates it.
 
 **Composable.** Add Moat to deposit/withdraw and other critical functions and cover ~90% of your attack surface out of the box. Layer on Hypernative, Forta, or custom detection engines later as your protocol matures.
+
+## Website
+
+The landing site source is in [`app/`](app/). To publish with GitHub Pages, open the repository **Settings → Pages**, set **Build and deployment** source to **GitHub Actions**, then merge the workflow in [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml). Pushes to `main` deploy the contents of `app/` to the project site (typically `https://ivanvolov.github.io/moat/`).
+
+Additional product notes live in [`docs/GivenProject.md`](docs/GivenProject.md).
