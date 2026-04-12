@@ -6,12 +6,12 @@
     <title>MOAT: PRE-EXECUTION FIREWALL FOR SMART CONTRACTS</title>
     <meta
       name="description"
-      content="Stop exploits before they execute. Open-source, decentralized pre-execution firewall for smart contracts—with rules you own and a user timelock exit."
+      content="Open-source pre-execution controls for smart contracts: policy you define, decentralized attestation, and accountable user recourse—aligned with industry risk taxonomies such as OWASP SC Top 10."
     />
     <meta property="og:title" content="MOAT: PRE-EXECUTION FIREWALL FOR SMART CONTRACTS" />
     <meta
       property="og:description"
-      content="Stop exploits before they execute. Open-source, decentralized pre-execution firewall for smart contracts—with rules you own and a user timelock exit."
+      content="Open-source pre-execution controls for smart contracts: policy you define, decentralized attestation, and accountable user recourse—aligned with industry risk taxonomies such as OWASP SC Top 10."
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://ivanvolov.github.io/moat/" />
@@ -37,26 +37,27 @@
       <div class="top-nav-inner">
         <a class="logo" href="#">MOAT</a>
         <nav class="top-nav-links" aria-label="Section navigation">
-          <a href="#problem">Problem</a>
-          <a href="#why-moat">Why Moat</a>
-          <a href="#how-it-works">How it works</a>
-          <a href="#attack-vectors">Attack vectors</a>
+          <a href="#problem">Context</a>
+          <a href="#why-moat">Benefits</a>
+          <a href="#how-it-works">Solution</a>
+          <a href="#integrity">Integrity</a>
+          <a href="#attack-vectors">Risk landscape</a>
         </nav>
-        <a class="btn btn-sm btn-solid" href="https://github.com/ivanvolov/moat">Integrate</a>
+        <a class="btn btn-sm btn-solid" href="https://github.com/ivanvolov/moat">Get started</a>
       </div>
     </header>
 
     <main id="main">
       <section class="hero" aria-labelledby="hero-title">
-        <p class="hero-kicker">Open-source security</p>
+        <p class="hero-kicker">Protocol security · Open source</p>
         <h1 id="hero-title" class="hero-title">
           <span class="hero-line">Moat: Pre-execution</span>
           <span class="hero-line hero-line-accent">Firewall</span>
           <span class="hero-line">For smart contracts</span>
         </h1>
         <p class="hero-sub">
-          The first open-source, decentralized firewall that stops exploits <strong>before</strong> they execute
-          on-chain.
+          An open-source, decentralized layer that evaluates high-risk contract calls <strong>before</strong> they
+          execute—so teams can enforce protocol-specific policy without relying solely on post-incident response.
         </p>
 
         <div class="stat-panel" role="note">
@@ -66,100 +67,185 @@
             done.
           </p>
           <p class="stat-note">
-            Loss totals depend on who counts what (hacks vs scams, bridges, CeFi-adjacent events). Treat this as
-            directional—see independent reports below.
+            Published loss figures vary by scope (on-chain exploits vs. broader operational incidents). Use this as
+            directional context; primary sources are cited in the risk section below.
           </p>
         </div>
 
         <p class="hero-body">
-          Moat validates every transaction against <strong>your</strong> protocol rules through a decentralized
-          network of operators—blocking malicious transactions in real time while keeping a built-in user fallback
-          so security never becomes silent censorship.
+          Moat evaluates each candidate transaction against <strong>policies you define</strong>, with independent
+          operators attesting to the outcome. Legitimate traffic can proceed quickly; policy violations surface
+          immediately, while a configurable timelock preserves user recourse—so controls strengthen without becoming
+          opaque censorship.
         </p>
 
         <div class="hero-cta-row">
-          <a class="btn btn-lg btn-solid" href="https://github.com/ivanvolov/moat">Integrate Moat now</a>
-          <a class="btn btn-lg btn-outline" href="#how-it-works">Learn how it works</a>
+          <a class="btn btn-lg btn-solid" href="https://github.com/ivanvolov/moat">Explore on GitHub</a>
+          <a class="btn btn-lg btn-outline" href="#how-it-works">How the solution works</a>
         </div>
 
         <div class="trust-strip" aria-label="Third-party references">
-          <span class="trust-strip-label">Grounded in public research</span>
+          <span class="trust-strip-label">References &amp; benchmarks</span>
           <div class="trust-strip-links">
-            <a href="https://scs.owasp.org/sctop10/">OWASP SC Top 10 (2026)</a>
-            <a href="https://scs.owasp.org/sctop10/data-sources/">OWASP data sources</a>
-            <a href="https://rekt.news/leaderboard">Rekt</a>
-            <a href="https://github.com/ivanvolov/moat">GitHub</a>
+            <a href="https://scs.owasp.org/sctop10/">OWASP Smart Contract Top 10 (2026)</a>
+            <a href="https://scs.owasp.org/sctop10/methodology/">How OWASP ranks risk</a>
+            <a href="https://scs.owasp.org/sctop10/data-sources/">Incident data behind the list</a>
+            <a href="https://rekt.news/leaderboard">Public incident index (Rekt)</a>
+            <a href="https://github.com/ivanvolov/moat">Source code</a>
           </div>
         </div>
       </section>
 
       <section id="problem" class="content-section" aria-labelledby="problem-h">
-        <h2 id="problem-h" class="section-title">Problem</h2>
-        <p class="section-hook">The next exploit should not be the moment you discover your defense strategy.</p>
+        <h2 id="problem-h" class="section-title">Market context</h2>
+        <p class="section-hook">Security investment should show up before the incident, not only during the post-mortem.</p>
         <p>
-          Most teams still rely on <strong>reactive</strong> playbooks: mempool monitoring, incident war rooms, or
-          the nuclear option—pausing the entire protocol. Those tools matter, but they kick in <em>after</em> the
-          transaction is already in flight. Capital moves at block speed.
+          Many organizations still depend on <strong>reactive</strong> controls: mempool surveillance, manual
+          incident response, or protocol-wide pause switches. These remain necessary, but they typically engage
+          <em>after</em> a transaction is already in motion—when treasury and reputation risk are hardest to unwind.
         </p>
         <p>
-          Meanwhile shipping velocity keeps climbing—AI-assisted code, thinner review cycles, and auditors who
-          cannot sit on every commit. The result is predictable: more attack surface, same finite audit bandwidth.
+          At the same time, delivery pressure is rising: faster release cycles, broader integration surfaces, and
+          audit capacity that cannot cover every change at the speed of shipping. The gap between “we were audited
+          once” and “we are safe today” keeps widening.
         </p>
         <p class="pull-line">
-          Moat is about moving defense <strong>upstream</strong>—to the calls that actually move value, before state
-          commits.
+          Moat focuses control at the <strong>transaction boundary</strong>—on the functions that move value—before
+          final state is committed on-chain.
         </p>
       </section>
 
       <section id="why-moat" class="content-section" aria-labelledby="why-h">
-        <h2 id="why-h" class="section-title">Why Moat</h2>
-        <p class="section-lead">A security layer LPs and users can reason about—without handing your protocol to a black box.</p>
+        <h2 id="why-h" class="section-title">Benefits</h2>
+        <p class="section-lead">
+          A control layer stakeholders can understand: explicit policy, visible enforcement, and an accountable path
+          when decisions are disputed.
+        </p>
         <div class="benefit-grid">
           <article class="benefit-card">
-            <h3>Confidence for builders &amp; LPs</h3>
+            <h3>Stakeholder assurance</h3>
             <p>
-              Put a clear story on the tin: critical entry points are gated, rules are explicit, and there is a
-              time-bounded path for legitimate users if something misfires.
+              Communicate how critical entry points are protected: which functions are gated, what policy applies, and
+              how end users retain recourse if a decision is wrong—supporting diligence from partners and liquidity
+              providers.
             </p>
           </article>
           <article class="benefit-card">
-            <h3>Your invariants—not a generic score</h3>
+            <h3>Protocol-specific policy</h3>
             <p>
-              You define what “normal” looks like: caps, ratios, yield bands, frequency limits. The system emulates
-              state and checks <strong>your</strong> economics—not a one-size-fits-all heuristic.
+              You author the invariants that matter to your economics—limits, ratios, yield bands, frequency caps.
+              Evaluation is against <strong>your</strong> model, not a generic vendor risk score.
             </p>
           </article>
           <article class="benefit-card">
-            <h3>Open, composable stack</h3>
+            <h3>Transparent architecture</h3>
             <p>
-              Built from primitives the ecosystem already uses: on-chain enforcement patterns like the Forta
-              Firewall proxy, and decentralized attestation via an AVS-style operator set—not a single hosted API
-              you cannot inspect.
+              Moat composes established building blocks—on-chain enforcement patterns such as the Forta Firewall
+              proxy, plus decentralized attestation from an operator set—so integration choices remain reviewable
+              and auditable.
             </p>
           </article>
         </div>
       </section>
 
       <section id="how-it-works" class="content-section" aria-labelledby="how-h">
-        <h2 id="how-h" class="section-title">How it works</h2>
-        <p class="section-lead">Two paths in, one disciplined gate, two outcomes: fast execution or a fair delay.</p>
+        <h2 id="how-h" class="section-title">Solution overview</h2>
+        <p class="section-lead">
+          Standard submission paths or a dedicated watchtower feed the same policy engine: attest, then execute—or
+          wait through a defined delay.
+        </p>
         <p>
-          Users can use normal RPC—or route through a Moat watchtower when latency matters. Operators emulate the
-          call, run your rules, and co-sign attestations. On-chain, a Forta Firewall–style modifier enforces the
-          verdict before your protocol logic runs.
+          Traffic may arrive via public RPC or, where latency is sensitive, through a Moat watchtower. Independent
+          operators simulate the proposed state transition, execute your rule set, and co-sign attestations. A
+          Forta Firewall–style on-chain modifier applies the result before protected contract logic runs.
         </p>
         <figure class="flow-figure">
           <img
             src="assets/moat-transaction-flow.png"
             alt="Moat transaction flow: RPC or watchtower to off-chain validation on EigenLayer, then Forta Firewall modifier on-chain; valid transactions execute, invalid or unanswered paths use a timelock before the user can execute."
           />
-          <figcaption>One screen, end-to-end: initiation → validation → attestation → execute or timelock.</figcaption>
+          <figcaption>Reference flow: submission → validation → attestation → execution or timelock.</figcaption>
         </figure>
         <ul class="bullet-list bullet-list-tight">
-          <li><strong>Validate early:</strong> catch impossible or abusive state transitions before they land.</li>
-          <li><strong>Decentralize trust:</strong> many operators, same rule set—no solo backend to lean on.</li>
-          <li><strong>Stay fair:</strong> a configurable timelock means “blocked” is never “forever.”</li>
+          <li><strong>Pre-execution review:</strong> surface policy violations before state is finalized on-chain.</li>
+          <li><strong>Distributed attestation:</strong> aligned operators, shared rules—no single point of policy failure.</li>
+          <li><strong>Governed exception path:</strong> configurable delay gives operators time to respond while preserving user exit.</li>
         </ul>
+      </section>
+
+      <section id="integrity" class="content-section integrity-section" aria-labelledby="integrity-h">
+        <h2 id="integrity-h" class="integrity-heading">
+          <span class="integrity-heading-plain">Built for</span>
+          <span class="integrity-heading-accent"> Immutable Integrity.</span>
+        </h2>
+        <p class="integrity-sub">
+          A multi-layered defense system that balances security, decentralization, and gas efficiency.
+        </p>
+        <div class="integrity-grid">
+          <article class="integrity-card">
+            <div class="integrity-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M11 21h-1l1-7H7.5c-.58 0-.57-.32-.38-.66.19-.34.05-.08.07-.12C8.48 10.94 10.42 7.87 12.24 4h1.17l-.67 7h3.09c.37 0 .38.25.3.42-.37.89-2.5 6.58-2.5 6.58s-.34.89-.73 1.18c-.39.29-.88.4-1.33.4z"/>
+              </svg>
+            </div>
+            <h3 class="integrity-card-title">Circuit breaker</h3>
+            <p class="integrity-card-text">
+              Instant transaction-level blocking. If an invariant is violated, the transaction reverts before it can
+              cause damage.
+            </p>
+            <pre class="integrity-code" tabindex="0"><code>modifier onlySafe() {
+  require(moat.isSecure(), "MOAT_REV");
+  _;
+}</code></pre>
+          </article>
+          <article class="integrity-card">
+            <div class="integrity-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round">
+                <circle cx="12" cy="14" r="8" />
+                <path d="M12 10V14l3 2" />
+                <path d="M12 2v2M18.36 5.64l-1.42 1.42" />
+              </svg>
+            </div>
+            <h3 class="integrity-card-title">Anti-censorship</h3>
+            <p class="integrity-card-text">
+              A strictly enforced 30-minute timelock on emergency holds. Reduces the risk of malicious or accidental
+              permanent denial of service while responders investigate.
+            </p>
+            <div class="integrity-timelock" aria-hidden="true">
+              <div class="integrity-timelock-bar">
+                <span class="integrity-timelock-fill" style="width: 75%"></span>
+              </div>
+              <span class="integrity-timelock-label">T-07:30</span>
+            </div>
+          </article>
+          <article class="integrity-card">
+            <div class="integrity-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="12" cy="10" r="3" fill="currentColor" stroke="none" />
+                <circle cx="5" cy="6" r="2" fill="none" />
+                <circle cx="19" cy="6" r="2" fill="none" />
+                <circle cx="5" cy="17" r="2" fill="none" />
+                <circle cx="19" cy="17" r="2" fill="none" />
+                <circle cx="12" cy="19" r="2" fill="none" />
+                <path d="M7 7.5 10 8.5M17 7.5 14 8.5M7 16.5 10 12.5M17 16.5 14 12.5M12 13v3" />
+              </svg>
+            </div>
+            <h3 class="integrity-card-title">Off-chain emulation</h3>
+            <p class="integrity-card-text">
+              Powered by an AVS on EigenLayer: off-chain workers simulate execution paths to evaluate policy against
+              predicted state before settlement.
+            </p>
+            <p class="integrity-badge-wrap">
+              <a
+                class="integrity-badge"
+                href="https://www.eigenlayer.xyz/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Powered by EigenLayer</a
+              >
+            </p>
+          </article>
+        </div>
       </section>
 
       <section id="attack-vectors" class="content-section attack-section" aria-labelledby="attack-h">
@@ -174,17 +260,18 @@
             />
           </a>
           <div class="owasp-header-text">
-            <h2 id="attack-h" class="attack-main-title">Attack vector breakdown: the OWASP Top 10</h2>
+            <h2 id="attack-h" class="attack-main-title">Risk landscape: OWASP Smart Contract Top 10</h2>
             <p class="attack-intro">
-              The
-              <a href="https://scs.owasp.org/sctop10/">OWASP Smart Contract Top 10 for 2026</a>
-              standardizes how the industry talks about contract risk—grounded in 2025 incident signals and practitioner
-              input (see
-              <a href="https://scs.owasp.org/sctop10/methodology/">methodology</a>
-              and
-              <a href="https://scs.owasp.org/sctop10/data-sources/">data sources</a>). Below is a focused slice:
-              categories that show up repeatedly in public post-mortems, with bar lengths scaled to illustrative
-              <strong>incident counts</strong> for comparison—not dollar loss.
+              The OWASP Foundation maintains the
+              <a href="https://scs.owasp.org/sctop10/">Smart Contract Top 10 (2026 edition)</a>, widely used as a
+              common taxonomy for on-chain contract risk. Its maintainers describe how the ranking is built from
+              2025 incident telemetry and practitioner input—their
+              <a href="https://scs.owasp.org/sctop10/methodology/">methodology note</a>
+              explains the aggregation model, and the
+              <a href="https://scs.owasp.org/sctop10/data-sources/">data sources page</a>
+              lists what went into the analysis. The chart below highlights four categories that recur in public
+              incident write-ups; bar length reflects <strong>relative incident counts</strong> in this illustrative
+              slice (not dollar loss).
             </p>
           </div>
         </div>
@@ -194,7 +281,7 @@
           role="img"
           aria-label="Horizontal bar chart: SC02 business logic 47 incidents, SC03 oracle 29, SC08 reentrancy 13, SC04 flash loan facilitated 9 illustrative"
         >
-          <p class="bar-chart-title">Attack vector bar chart — OWASP SC Top 10 (2026) categories (selected)</p>
+          <p class="bar-chart-title">Selected categories — relative frequency (illustrative incident counts)</p>
           <div class="bar-chart-rows">
             <div class="bar-row">
               <div class="bar-label">
@@ -238,9 +325,9 @@
             </div>
           </div>
           <p class="bar-chart-note">
-            Bar lengths are proportional to the counts in each row (47 = 100%). Official category order and
-            definitions:
-            <a href="https://scs.owasp.org/sctop10/#changes">OWASP SC Top 10 — 2026 ranking</a>.
+            Each bar is scaled to the count shown on the right (the largest value in this view, 47, fills the track).
+            For authoritative ordering, full category definitions, and the complete 2026 list, refer to the
+            <a href="https://scs.owasp.org/sctop10/#changes">published ranking on OWASP’s Smart Contract Security site</a>.
           </p>
         </div>
 
@@ -287,48 +374,50 @@
         <div class="audit-gap-panel">
           <h3 class="audit-gap-title">Audit coverage gap</h3>
           <p>
-            OWASP’s own 2026 materials stress that rankings come from
-            <strong>aggregated 2025 smart-contract incidents</strong> plus surveys—for example on the order of
-            <strong>122</strong> deduplicated contract-tagged incidents and roughly
-            <strong>$905M</strong> in analyzed smart-contract–involved losses for that slice (see
-            <a href="https://scs.owasp.org/sctop10/data-sources/">OWASP data sources</a>). That is already a narrow
-            subset of “everything that went wrong in Web3,” and it still spans dozens of teams.
+            In their own documentation for the 2026 list, OWASP cites roughly
+            <strong>122</strong> deduplicated smart-contract incidents and about
+            <strong>$905M</strong> in associated losses for the analyzed slice—figures published alongside the project’s
+            <a href="https://scs.owasp.org/sctop10/data-sources/">data sources</a>. Even that scoped sample spans many
+            teams, which underscores how often production diverges from the snapshot a single audit represents.
           </p>
           <p>
-            Independent compendiums (e.g.
-            <a href="https://www.halborn.com/reports/top-100-defi-hacks-2025">Halborn’s Top 100 DeFi hacks</a>) have
-            reported that <strong>only a minority</strong> of breached protocols carried a prior audit in-scope for the
-            exploited surface—exact percentages vary by report, but the pattern is stable:
-            <strong>ship velocity and integration churn outrun point-in-time review.</strong>
+            Third-party surveys and hack compendiums (for example
+            <a href="https://www.halborn.com/reports/top-100-defi-hacks-2025">Halborn’s review of major DeFi incidents</a>)
+            similarly report that a limited share of exploited code paths were covered by a prior, in-scope audit—exact
+            percentages differ by study, but the structural issue is consistent:
+            <strong>release cadence and integration change faster than periodic review cycles.</strong>
           </p>
           <p class="audit-gap-close">
-            Moat is aimed at that gap: continuous, transaction-level checks against <em>your</em> rules—not a
-            replacement for audits, but a layer that can react when reality diverges from what reviewers signed off on
-            months ago.
+            Moat is intended to narrow that gap through continuous, transaction-level evaluation against policies you
+            own—complementing formal audits when design or deployment has moved on since the last sign-off.
           </p>
         </div>
 
         <p class="owasp-legal">
-          OWASP® is a registered trademark of the OWASP Foundation. Moat is not affiliated with OWASP; category names
-          and numbering reference the public
+          OWASP® is a registered trademark of the OWASP Foundation. Moat is an independent project; category labels
+          follow the public
           <a href="https://scs.owasp.org/sctop10/">Smart Contract Top 10 (2026)</a>
-          (CC BY-NC-SA 4.0).
+          (licensed CC BY-NC-SA 4.0).
         </p>
       </section>
 
-      <section class="closing-band" aria-labelledby="closing-h">
-        <h2 id="closing-h" class="visually-hidden">Get started</h2>
-        <p class="closing-band-title">Ready to put a gate in front of your riskiest calls?</p>
-        <div class="hero-cta-row closing-band-cta">
-          <a class="btn btn-lg btn-solid" href="https://github.com/ivanvolov/moat">Start on GitHub</a>
-        </div>
-      </section>
     </main>
+
+    <section class="cta-floor" aria-labelledby="cta-floor-h">
+      <div class="cta-floor-inner">
+        <h2 id="cta-floor-h" class="cta-floor-title">Moat is the floor.</h2>
+        <p class="cta-floor-sub">
+          Don’t wait for your first audit or your first exploit. Security is a day-one primitive. Integrate Moat and
+          sleep better.
+        </p>
+        <a class="cta-floor-btn" href="https://github.com/ivanvolov/moat">Stop being low hanging fruit now</a>
+      </div>
+    </section>
 
     <footer class="page-footer">
       <p>
         <a href="https://github.com/ivanvolov/moat">ivanvolov/moat</a>
-        — marketing site; not a security guarantee or audit.
+        — informational overview only; not an audit, warranty, or security certification.
       </p>
     </footer>
   </body>
