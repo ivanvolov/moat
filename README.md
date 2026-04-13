@@ -52,3 +52,6 @@ Moat is built by composing existing, audited primitives:
 
 See the [Integration Guide](INTEGRATION_GUIDE.md) for the full component map, transaction flow, and a walkthrough of how to put Moat in front of your own protocol.
 
+## Support Moat on Giveth
+
+Moat is listed as a public good on Giveth — [support development here](https://giveth.io/project/open-source-smart-contract-firewall  ).
