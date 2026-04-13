@@ -1,0 +1,11 @@
+{
+    "name": "moat-firewall",
+    "private": true,
+    "scripts": {
+        "fmt": "prettier --write \"**/*.sol\" \"**/*.js\""
+    },
+    "devDependencies": {
+        "prettier": "^3.3.3",
+        "prettier-plugin-solidity": "^1.4.1"
+    }
+}

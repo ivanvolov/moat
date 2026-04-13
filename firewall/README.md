@@ -1,66 +1,66 @@
-## Foundry
+# Moat Firewall
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+On-chain component of [Moat](../README.md). A Solidity contract that queues transactions for watchtower review and guarantees a user-side timelock fallback.
 
-Foundry consists of:
+## What it does
 
-- **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
-- **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
-- **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
-- **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+`MoatFirewall` sits in front of a protocol's critical function calls. Submitted transactions are held until:
 
-## Documentation
+- the **watchtower** approves and executes them, or
+- the **timelock** expires and the original submitter pushes them through themselves.
 
-https://book.getfoundry.sh/
+For ERC-20 flows, the submitter commits `(token, tokenAmount)` at submission time. On execution the firewall pulls exactly that amount from the submitter, approves the target, calls it, then resets the allowance to zero — so no leftover approval ever sits on the firewall.
 
-## Usage
+See [`src/MoatFirewall.sol`](src/MoatFirewall.sol) for the contract.
 
-### Build
+## Layout
 
-```shell
-$ forge build
+```
+src/
+  MoatFirewall.sol       — the firewall contract
+test/
+  Base.t.sol             — shared setup, actors, helpers
+  Submit.t.sol           — submit() validation and storage
+  Approve.t.sol          — watchtower approval path
+  PushThrough.t.sol      — timelock fallback path
+  Admin.t.sol            — whitelist and role management
+  Integration.t.sol      — end-to-end flows against an ERC-4626 vault
+  Fuzz.t.sol             — fuzz tests for values, timelock, token flow
+  utils/
+    ERC20Mock.sol        — freely mintable ERC-20 for tests
+    MockTarget.sol       — call recorder with configurable revert + token pull
+    FirewallVault.sol    — ERC-4626 vault gated behind the firewall
 ```
 
-### Test
+## Build
 
 ```shell
-$ forge test
+forge build
 ```
 
-### Format
+## Test
 
 ```shell
-$ forge fmt
+forge test          # run the full suite
+forge test -vv      # with stack traces on failures
+forge coverage      # line/branch coverage report
 ```
 
-### Gas Snapshots
+## Format
+
+The repository uses `prettier` with `prettier-plugin-solidity`. Install once, then:
 
 ```shell
-$ forge snapshot
+npm install
+npm run fmt         # or: make fmt
 ```
 
-### Anvil
+Config lives in [`.prettierrc`](.prettierrc).
+
+## Deploy
 
 ```shell
-$ anvil
+forge script script/Deploy.s.sol --rpc-url <rpc_url> --private-key <key> --broadcast
 ```
 
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+(Deploy script TBD.)

@@ -48,8 +48,8 @@ Moat is built by composing existing, audited primitives:
 
 **Composable.** Add Moat to deposit/withdraw and other critical functions and cover ~90% of your attack surface out of the box. Layer on Hypernative, Forta, or custom detection engines later as your protocol matures.
 
-## Website
+## Implementation
 
-The landing site source is in [`app/`](app/). To publish with GitHub Pages, open the repository **Settings → Pages**, set **Build and deployment** source to **GitHub Actions**, then merge the workflow in [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml). Pushes to `main` deploy the contents of `app/` to the project site (typically `https://ivanvolov.github.io/moat/`).
+- [Firewall contract](firewall/README.md) — on-chain enforcement, submission queue, timelock fallback, ERC-20 token flow.
+- [Landing page](app/README.md) — static site, local dev, GitHub Pages deployment.
 
-Additional product notes live in [`docs/GivenProject.md`](docs/GivenProject.md).
