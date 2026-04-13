@@ -59,8 +59,25 @@ Config lives in [`.prettierrc`](.prettierrc).
 
 ## Deploy
 
+[`script/Deploy.s.sol`](script/Deploy.s.sol) deploys `MoatFirewall` with the constructor arguments read from environment variables.
+
+Required env vars:
+
+- `ADMIN` — address allowed to manage the whitelist and roles
+- `WATCHTOWER` — address allowed to approve pending transactions
+- `TIMELOCK_DURATION` — seconds after which the submitter can `pushThrough`
+
+Run:
+
 ```shell
-forge script script/Deploy.s.sol --rpc-url <rpc_url> --private-key <key> --broadcast
+ADMIN=0x... \
+WATCHTOWER=0x... \
+TIMELOCK_DURATION=3600 \
+forge script script/Deploy.s.sol:Deploy \
+  --rpc-url <rpc_url> \
+  --private-key <key> \
+  --broadcast \
+  --verify
 ```
 
-(Deploy script TBD.)
+After deployment, whitelist each target contract with `allow(address)` from the admin account before users can submit transactions against it.

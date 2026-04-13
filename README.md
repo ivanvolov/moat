@@ -50,6 +50,5 @@ Moat is built by composing existing, audited primitives:
 
 ## Implementation
 
-- [Firewall contract](firewall/README.md) — on-chain enforcement, submission queue, timelock fallback, ERC-20 token flow.
-- [Landing page](app/README.md) — static site, local dev, GitHub Pages deployment.
+See the [Integration Guide](INTEGRATION_GUIDE.md) for the full component map, transaction flow, and a walkthrough of how to put Moat in front of your own protocol.
 
