@@ -54,7 +54,7 @@
         <p class="hero-lead">
           Moat evaluates high-risk calls against your protocol state and your rules <strong>before</strong> execution. Integrate once on the functions that move value, ship with a clearer story for LPs and partners.
         </p>
-        <p class="hero-stat-inline"><strong>$300M+</strong> lost to DeFi exploits in 2025 (DeFiLlama). That is the class of failures pre-execution emulation is built to catch.</p>
+        <p class="hero-stat-inline"><strong>$1B+</strong> lost to DeFi exploits in 2025 (DeFiLlama). That is the class of failures pre-execution emulation is built to catch.</p>
         <div class="hero-cta-row">
           <a class="btn btn-lg btn-solid" href="https://github.com/ivanvolov/moat">Get started</a>
           <a class="btn btn-lg btn-outline" href="#how">How it works</a>
@@ -73,7 +73,7 @@
           <h3 class="subsection-title">What is broken</h3>
           <ul class="problem-list">
             <li>Teams ship weekly. Audits snapshot one moment in time.</li>
-            <li><strong>Hypernative Firewall</strong> is closed source and enterprise-priced, so many teams cannot adopt it.</li>
+            <li><strong>Hypernative Firewall</strong> is closed source and enterprise-priced, so early-stage teams cannot adopt it.</li>
             <li><strong>OpenZeppelin Defender</strong> is sunsetting in July 2026, which leaves a real gap.</li>
             <li>There is still no mainstream <strong>open</strong>, <strong>decentralized</strong> drop-in you can wire to your contracts today.</li>
           </ul>
@@ -111,7 +111,6 @@
         </div>
         <div class="under-hood">
           <h3 class="subsection-title">Under the hood</h3>
-          <p class="under-hood-lead">Audited patterns composed together, not a single opaque API.</p>
           <div class="integrity-grid">
             <article class="integrity-card">
               <div class="integrity-icon" aria-hidden="true">
@@ -121,7 +120,7 @@
               </div>
               <h3 class="integrity-card-title">On-chain gate</h3>
               <p class="integrity-card-text">
-                A Forta Firewall–style modifier runs before your logic. If policy fails, the call never commits the bad transition.
+                Moat keeps a minimal on-chain footprint: one lightweight gate in front of critical functions, with full policy checks handled off-chain.
               </p>
               <pre class="integrity-code" tabindex="0"><code>modifier onlySafe() {
   require(moat.isSecure(), "MOAT_REV");
@@ -138,7 +137,7 @@
               </div>
               <h3 class="integrity-card-title">Timelock exit</h3>
               <p class="integrity-card-text">
-                Holds are time-bounded. Your team can respond during the window. Users always keep an ultimate path on-chain.
+                If a transaction is flagged, users can still withdraw after the timelock, while the protocol team gets a real window for incident response.
               </p>
               <div class="integrity-timelock" aria-hidden="true">
                 <div class="integrity-timelock-bar">
@@ -161,7 +160,7 @@
               </div>
               <h3 class="integrity-card-title">Distributed validation</h3>
               <p class="integrity-card-text">
-                The same emulation and rule set runs across operators—Symbiotic and EigenLayer-style AVS patterns, not one rented backend forever.
+                Validation is distributed across independent operators, with an optional EigenLayer-backed backend for teams that want network-level security.
               </p>
               <p class="integrity-badge-wrap">
                 <a
@@ -181,7 +180,6 @@
         <header class="section-how-header">
           <p class="section-label">How it works</p>
           <h2 id="how-h" class="section-heading">From submission to execution</h2>
-          <p class="section-how-lead">Every protected call follows the same path. The diagram shows the full flow, then each step below spells it out in plain language.</p>
         </header>
 
         <div class="how-diagram-wrap">
@@ -207,7 +205,7 @@
             <span class="steps-num">2</span>
             <div class="steps-body">
               <strong>Validation</strong>
-              <span>Operators emulate state before and after the proposed change, run your rule set, and co-sign an attestation. Same rules, many independent replicas.</span>
+              <span>Operators emulate state before and after the proposed change, run your rule set, and co-sign an attestation based on invariants your team knows best.</span>
             </div>
           </li>
           <li class="steps-item">
@@ -222,7 +220,6 @@
 
       <div class="page-rail-divider" aria-hidden="true">
         <span class="page-rail-divider-line"></span>
-        <span class="page-rail-divider-mark">Moat</span>
         <span class="page-rail-divider-line"></span>
       </div>
     </main>
@@ -231,7 +228,7 @@
       <div class="cta-floor-inner">
         <h2 id="cta-floor-h" class="cta-floor-title">Install Moat on the calls that matter.</h2>
         <p class="cta-floor-sub">
-          Clone the repo, wire the modifier, define your rules. Audits still matter. This is how you show LPs you treated security as product from day one.
+          Audits still matter. This is how you show LPs you treated security as product from day one.
         </p>
         <a class="cta-floor-btn" href="https://github.com/ivanvolov/moat">Get started on GitHub</a>
       </div>
