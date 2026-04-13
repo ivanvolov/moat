@@ -1,2 +1,7 @@
 node_modules
 /context
+
+# Foundry
+firewall/out/
+firewall/cache/
+firewall/.env
