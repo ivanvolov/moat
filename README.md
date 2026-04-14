@@ -2,6 +2,8 @@
 
 An open-source, decentralized pre-execution firewall for smart contracts. Emulates every incoming transaction before it touches your protocol and blocks exploits before they land.
 
+[👉explore👈](https://ivanvolov.github.io/moat/)
+
 ## The Problem
 
 Protocols get hacked. Today's response is **reactive** — firewalls scan the mempool and try to react after the attack starts. By then, funds are often already gone.
