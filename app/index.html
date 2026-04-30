@@ -11,7 +11,7 @@
     <meta property="og:title" content="Moat — Pre-execution firewall for smart contracts" />
     <meta
       property="og:description"
-      content="Block policy-breaking transactions before they touch your protocol. Open source, operator-attested, built on audited primitives."
+      content="Block policy-breaking transactions before they touch your protocol. Open source, your rules, built on audited primitives."
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://ivanvolov.github.io/moat/" />
@@ -74,8 +74,8 @@
           <ul class="problem-list">
             <li>Teams ship weekly. Audits snapshot one moment in time.</li>
             <li><strong>Hypernative Firewall</strong> is closed source and enterprise-priced, so early-stage teams cannot adopt it.</li>
-            <li><strong>OpenZeppelin Defender</strong> is sunsetting in July 2026, which leaves a real gap.</li>
-            <li>There is still no mainstream <strong>open</strong>, <strong>decentralized</strong> drop-in you can wire to your contracts today.</li>
+            <li><strong>Forta Firewall</strong> and <strong>Ironblocks</strong> ship a custom-rule surface, but the products are built around vendor-managed detection — designed for L2s and protocols subscribing to a catalog, not for a lean team running its own simple rules.</li>
+            <li>There is still no permissively-licensed <strong>day-one</strong> firewall a lean team can drop in and wire to the simple invariants it already understands.</li>
           </ul>
         </div>
       </section>
@@ -85,7 +85,7 @@
           <p class="section-label">Solution</p>
           <h2 id="solution-h" class="section-heading">Moat is a circuit breaker your team controls</h2>
           <p class="section-deck">
-            It sits in front of deposits, withdrawals, swaps, or any function you choose. Operators emulate the proposed state change, run <strong>your</strong> rules, and attest. Your contract only executes when policy passes, or after a timelock gives users a guaranteed path forward.
+            It sits in front of deposits, withdrawals, swaps, or any function you choose. A validator emulates the proposed state change, runs <strong>your</strong> rules, and signs a verdict. Your contract only executes when the verdict passes, or after a timelock gives users a guaranteed path forward.
           </p>
         </header>
         <h3 class="subsection-title subsection-title-spaced">What you get</h3>
@@ -99,7 +99,7 @@
           <article class="feature-card">
             <h3 class="feature-card-title">Rules only you can write</h3>
             <p class="feature-card-text">
-              Limits, ratios, yield bands, frequency caps—the invariants come from the team that knows the economics, not a black-box score.
+              Reserve ratios, share-price bounds, yield caps, profit thresholds — the invariants come from the team that knows the economics, not a black-box score.
             </p>
           </article>
           <article class="feature-card">
@@ -158,9 +158,9 @@
                   <path d="M7 7.5 10 8.5M17 7.5 14 8.5M7 16.5 10 12.5M17 16.5 14 12.5M12 13v3" />
                 </svg>
               </div>
-              <h3 class="integrity-card-title">Distributed validation</h3>
+              <h3 class="integrity-card-title">Validator, self-hosted to AVS</h3>
               <p class="integrity-card-text">
-                Validation is distributed across independent operators, with an optional EigenLayer-backed backend for teams that want network-level security.
+                At v1, validation runs on a backend the team hosts itself. As the protocol decentralizes, it moves to an EigenLayer / Symbiotic AVS where independent operators run the same checks.
               </p>
               <p class="integrity-badge-wrap">
                 <a
@@ -187,7 +187,7 @@
           <figure class="flow-figure flow-figure-prominent">
             <img
               src="assets/moat-transaction-flow.png"
-              alt="Diagram of Moat flow from submission through off-chain validation to on-chain gate and optional user timelock."
+              alt="Diagram of Moat flow from submission through off-chain validation to on-chain gate and guaranteed user force-through timelock."
             />
           </figure>
         </div>
@@ -205,7 +205,7 @@
             <span class="steps-num">2</span>
             <div class="steps-body">
               <strong>Validation</strong>
-              <span>Operators emulate state before and after the proposed change, run your rule set, and co-sign an attestation based on invariants your team knows best.</span>
+              <span>A validator emulates state before and after the proposed change, runs your rule set, and signs a verdict based on invariants your team knows best.</span>
             </div>
           </li>
           <li class="steps-item">
