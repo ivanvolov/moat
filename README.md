@@ -6,7 +6,7 @@
 
 # Moat
 
-An open-source, decentralized pre-execution firewall for smart contracts. Emulates every incoming transaction before it touches your protocol and blocks exploits before they land — checked against the simple invariants the team already wrote.
+An open-source, decentralized pre-execution firewall for smart contracts. Emulates every incoming transaction before it touches your protocol, checks it against the simple invariants the team already wrote, and blocks exploits before they land.
 
 [👉explore👈](https://ivanvolov.github.io/moat/)
 
@@ -17,7 +17,7 @@ Protocols get hacked. Today's response is **reactive** — firewalls scan the me
 Meanwhile, teams ship faster than ever. Lean teams in 2026 increasingly ship with LLM-assisted audits and no firewall budget — exactly the buyer who has nothing to drop in today. The attack surface is growing and audit coverage isn't keeping up.
 - **Hypernative Firewall** helps, but it's closed-source, proprietary, and enterprise-priced — unavailable to most early teams. 
 - **Forta Firewall** and **Ironblocks** ship a custom-rule surface, but the products are built around vendor-managed detection (AI Attesters and compliance filters at Forta, Approved Patterns at Ironblocks) — designed for L2s and protocols subscribing to a catalog, not for a lean team running its own simple rules.
-- **There is no permissively-licensed firewall built around the team's own simple rules they can easily install on day one.**
+- **There is no permissively-licensed firewall built around the team's own simple rules — easy to install on day one.**
 
 ## Architecture
 
