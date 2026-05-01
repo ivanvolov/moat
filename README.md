@@ -6,6 +6,8 @@
 
 # Moat
 
+![Moat](assets/baner.png)
+
 An open-source, decentralized pre-execution firewall for smart contracts. Emulates every incoming transaction before it touches your protocol, checks it against the simple invariants the team already wrote, and blocks exploits before they land.
 
 [👉explore👈](https://ivanvolov.github.io/moat/)
@@ -22,6 +24,8 @@ Meanwhile, teams ship faster than ever. Lean teams in 2026 increasingly ship wit
 ## Architecture
 
 Moat sits in front of your critical function calls — deposits, withdrawals, swaps, anything you choose. A circuit breaker for users' transactions. Open source. Auditable.
+
+![Moat architecture diagram](assets/diagram.png)
 
 It operates at the intersection of a thin on-chain enforcement layer and an off-chain validator:
 
