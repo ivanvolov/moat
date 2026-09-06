@@ -6,3 +6,4 @@ node_modules
 firewall/out/
 firewall/cache/
 firewall/.env
+github.pointer.md
